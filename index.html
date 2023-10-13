@@ -1,5 +1,5 @@
-<!-- This HTML page programed by Jerry; About this project's Github page: https://github.com/Jerry114514/bf1-web-tool-HTML-Template -->
 <!DOCTYPE html>
+<!-- This HTML page programed by Jerry; About this project's Github page: https://github.com/Jerry114514/bf1-web-tool-HTML-Template -->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -8,15 +8,48 @@
     <!-- 从百度cdn引用JQ -->
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <style type="text/css">
-      body{
+      body {
         display: flex;
         flex-direction: column;
         align-items: center;
+      }
+
+      h2,
+      h3,
+      span {
+        transition: background-color, 1s;
+      }
+
+      .info,.info2{
+        border-radius: 20px
       }
       /* 标题 */
       .bigti {
         color: aqua;
       }
+
+      #circle {
+        display: flex;
+        position: absolute;
+        top: 95.5%;
+        left: 96%;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: linear-gradient(to right, black, white);
+        cursor: pointer;
+        z-index: 9;
+      }
+
+      #circFunction{
+        display: flex;
+        position: absolute;
+        top: 95.8%;
+        left: 87.5%;
+        border-radius: 20px;
+        font-weight: 1000;
+      }
+
       /* 信息输入区域与（此处插入模块3）背景 */
       #mainArea {
         display: flex;
@@ -26,24 +59,18 @@
 
       .info {
         display: flex;
-
         /*透明度0.6*/
         background-color: rgba(255, 255, 255, 0.6);
-
-        /*外边距*/
-        margin-left: 2%;
-
         /*长宽*/
         width: 400px;
         height: 85vh;
-
         /*高斯模糊*/
-        backdrop-filter: blur(10px);
-
+        backdrop-filter: blur(20px);
         /* 竖轴居中 */
         flex-direction: column;
         align-items: center;
         text-align: center;
+        transition: background-color, 1s;
       }
 
       /* 输入表单 */
@@ -57,14 +84,18 @@
         border-top: none;
         border-left: none;
         border-right: none;
+        transition: background-color, 1s;
       }
+
       ::placeholder {
         font-size: 20px;
       }
+
       input:focus {
         /* 去除outline */
         outline: none;
       }
+
       .btn {
         width: 250px;
         height: 50px;
@@ -72,8 +103,10 @@
         border: none;
         cursor: pointer;
         font-size: 15px;
+        transition: background-color, 1s;
       }
-      #gameSearch{
+
+      #gameSearch {
         background-color: rgb(76, 183, 255);
       }
 
@@ -82,38 +115,44 @@
       /*战局信息模块背景*/
       .info2 {
         display: flex;
-        
+
         /*透明度0.6*/
         background-color: rgba(255, 255, 255, 0.6);
-
         /*外边距*/
         margin-left: 2%;
-
         /*长宽*/
         width: 950px;
         height: 85vh;
-
         /*高斯模糊*/
         backdrop-filter: blur(10px);
-
         /* 竖轴居中 */
         flex-direction: column;
         align-items: center;
         text-align: center;
+        transition: background-color, 1s;
       }
-      #checkPlayer{
+
+      #operator {
+        margin-left: 2%;
+        transition: background-color, 1s;
+      }
+
+      #checkPlayer {
         margin-top: 20px;
-        background-color:rgb(93, 255, 78);
+        background-color: rgb(93, 255, 78);
       }
-      #changeSide{
+
+      #changeSide {
         margin-top: 20px;
         background-color: aquamarine;
       }
-      #kickPlayer{
+
+      #kickPlayer {
         margin-top: 20px;
         background-color: rgb(255, 208, 0);
       }
-      #banPlayer{
+
+      #banPlayer {
         margin-top: 20px;
         background-color: red;
       }
@@ -122,6 +161,9 @@
   </head>
 
   <body background=".\图包\nightTower.jpg">
+    <!-- 主题切换 -->
+    <div id="circle"></div>
+    <div id="circFunction">更换至夜间主题==></div>
     <h1 class="bigti">战地1网页管理工具</h1>
     <div id="mainArea">
       <!--在此输入gameid，remid和sid-->
@@ -189,7 +231,9 @@
           />
         </form>
         <br />
-        <button type="button" class="btn" id="gameidSearch">不知道GameID？点此搜索</button>
+        <button type="button" class="btn" id="gameidSearch">
+          不知道GameID？点此搜索
+        </button>
       </div>
 
       <!-- 服务器主要模块 -->
@@ -206,12 +250,64 @@
 
       <!-- 操作模块 -->
       <div class="info" id="operator">
-        <br>
-        <button type="button" class="btn" id="checkPlayer">查询该玩家战绩</button>
-        <button type="button" class="btn" id="changeSide">更换玩家所属阵营（换边）</button>
+        <br />
+        <button type="button" class="btn" id="checkPlayer">
+          查询该玩家战绩
+        </button>
+        <button type="button" class="btn" id="changeSide">
+          更换玩家所属阵营（换边）
+        </button>
         <button type="button" class="btn" id="kickPlayer">踢出该玩家</button>
-        <button type="button" class="btn" id="banPlayer">在此服务器中封禁该玩家</button>
+        <button type="button" class="btn" id="banPlayer">
+          在此服务器中封禁该玩家
+        </button>
       </div>
     </div>
+    <script>
+      let dayNight = document.querySelector("#circle");
+      let msg1 = document.querySelectorAll(".info");
+      let msg2 = document.querySelectorAll(".info2");
+      let i = 1;
+      dayNight.addEventListener("click", function () {
+        if (i % 2 == 0) {
+          for (let j = 0; j < msg1.length; j++) {
+            msg1[j].style.backgroundColor = "rgba(255, 255, 255, 0.6)";
+          }
+          for (let j = 0; j < msg2.length; j++) {
+            msg2[j].style.backgroundColor = "rgba(255, 255, 255, 0.6)";
+          }
+          /* 已经...变成jq的形状了... */
+          $("h2").css({
+            color: "black",
+          });
+          
+          $("h3").css({
+            color: "black",
+          })
+          $("span").css({
+            color: "black",
+          })
+
+        } else {
+          for (let j = 0; j < msg1.length; j++) {
+            msg1[j].style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+           
+          }
+          for (let j = 0; j < msg2.length; j++) {
+            msg2[j].style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+          }
+          $("h2").css({
+            color: "white",
+          });
+          $("h3").css({
+            color: "white",
+          })
+          $("span").css({
+            color: "white",
+          })
+        }
+        i++;
+      });
+    </script>
   </body>
 </html>

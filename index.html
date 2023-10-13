@@ -1,129 +1,149 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>bf1网页管理工具</title>
     <style type="text/css">
-        /* 信息输入区域与（此处插入模块3）背景 */
-        .info {
-            /*透明度0.6*/
-            background-color: rgba(255, 255, 255, 0.60);
-            /*向左浮动*/
-            float: left;
-            overflow: hidden;
-            /*外边距*/
-            margin-left: 2%;
-            /*长宽*/
-            width: 400px;
-            height: 85vh;
-            /*高斯模糊*/
-            backdrop-filter: blur(10px);
-        }
+      /* 信息输入区域与（此处插入模块3）背景 */
+      .serverInfo {
+        /*透明度0.6*/
+        background-color: rgba(255, 255, 255, 0.6);
+        /*向左浮动*/
+        float: left;
+        overflow: hidden;
+        /*外边距*/
+        margin-left: 2%;
+        /*长宽*/
+        width: 400px;
+        height: 85vh;
+        /*高斯模糊*/
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-        /*服务器主信息模块背景*/
-        .info2 {
-            /*透明度0.6*/
-            background-color: rgba(255, 255, 255, 0.60);
-            /*向左浮动*/
-            float: left;
-            overflow: hidden;
-            /*外边距*/
-            margin-left: 2%;
-            /*长宽*/
-            width: 950px;
-            height: 85vh;
-            /*高斯模糊*/
-            backdrop-filter: blur(10px);
-        }
+      /*服务器主信息模块背景*/
+      .info2 {
+        /*透明度0.6*/
+        background-color: rgba(255, 255, 255, 0.6);
+        /*向左浮动*/
+        float: left;
+        overflow: hidden;
+        /*外边距*/
+        margin-left: 2%;
+        /*长宽*/
+        width: 950px;
+        height: 85vh;
+        /*高斯模糊*/
+        backdrop-filter: blur(10px);
+      }
 
-        /* 输入表单 */
-        .idipt {
-            /*长宽*/
-            width: 350px;
-            height: 50px;
-            /*透明背景色*/
-            background-color: rgba(255, 255, 255, 0);
-            /*只保留底部边框*/
-            border-top: none;
-            border-left: none;
-            border-right: none;
-        }
+      /* 输入表单 */
+      .idipt {
+        /*长宽*/
+        width: 350px;
+        height: 50px;
+        /*透明背景色*/
+        background-color: rgba(255, 255, 255, 0);
+        /*只保留底部边框*/
+        border-top: none;
+        border-left: none;
+        border-right: none;
+      }
 
-        /* 标题 */
-        .bigti {
-            color: aqua;
-        }
+      /* 标题 */
+      .bigti {
+        color: aqua;
+      }
     </style>
-    <script type="text/javascript">
+    <script type="text/javascript"></script>
+  </head>
 
-    </script>
-</head>
-
-<body background=".\图包\nightTower.jpg">
+  <body background=".\图包\nightTower.jpg">
     <h1 align="center" class="bigti">战地1网页管理工具</h1>
     <div>
-        <!--在此输入gameid，remid和sid-->
-        <!-- 信息输入板块 -->
-        <div class="info" align="center">
-            <h3 align="center">请先填写您的服务器的信息</h3>
-            <br>
-            <br>
-            <!-- 输入remid -->
-            <form class="remid" method="post">
-                <input type="text" name="remid" placeholder="输入remid" oninvalid="setCustomValidity('必须输入remid！')"
-                    oninput="setCustomValidity" required class="idipt">
-                <br>
-                <a href=".\remid-help.html">如何获取remid？点击这里查看</a>
-            </form>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+      <!--在此输入gameid，remid和sid-->
+      <!-- 信息输入板块 -->
+      <div class="serverInfo">
+        <h3 align="center">请先填写您的服务器的信息</h3>
+        <br />
+        <br />
+        <!-- 输入remid -->
+        <form class="remid" method="post">
+          <input
+            type="text"
+            name="remid"
+            placeholder="输入remid"
+            oninvalid="setCustomValidity('必须输入remid！')"
+            oninput="setCustomValidity"
+            required
+            class="idipt"
+          />
+          <br />
+          <a href=".\remid-help.html">如何获取remid？点击这里查看</a>
+        </form>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
 
-            <!-- 输入sid -->
-            <form class="sid" method="post">
-                <input type="text" name="remid" placeholder="输入sid" oninvalid="setCustomValidity('必须输入sid！')"
-                    oninput="setCustomValidity" required class="idipt">
-                <br>
-                <a
-                    href=".\sid-help.html">如何获取sid？点击这里查看</a>
-            </form>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+        <!-- 输入sid -->
+        <form class="sid" method="post">
+          <input
+            type="text"
+            name="remid"
+            placeholder="输入sid"
+            oninvalid="setCustomValidity('必须输入sid！')"
+            oninput="setCustomValidity"
+            required
+            class="idipt"
+          />
+          <br />
+          <a href=".\sid-help.html">如何获取sid？点击这里查看</a>
+        </form>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
 
-            <!-- 输入gameid -->
-            <form class="gameid" method="post">
-                <input type="text" name="remid" placeholder="输入gameid" oninvalid="setCustomValidity('必须输入gameid！')"
-                    oninput="setCustomValidity" required class="idipt">
-            </form>
-            <br>
-            <a href="javascript:alert('暂定')">不知道GameID？点此搜索</a>
+        <!-- 输入gameid -->
+        <form class="gameid" method="post">
+          <input
+            type="text"
+            name="remid"
+            placeholder="输入gameid"
+            oninvalid="setCustomValidity('必须输入gameid！')"
+            oninput="setCustomValidity"
+            required
+            class="idipt"
+          />
+        </form>
+        <br />
+        <button type="button" id="gameidSearch" alert:"不知道GameID？点此搜索>
+            不知道GameID？点此搜索
+            
+        </button>
+      </div>
+
+      <!-- 服务器主要模块 -->
+      <div class="info2">
+        <div align="center">
+          <h2>服务器名称</h2>
+          <h2>
+            <span>服务器人数：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;<span>当前游玩地图：</span>
+          </h2>
         </div>
+      </div>
 
-        <!-- 服务器主要模块 -->
-        <div class="info2">
-            <div align="center">
-                <h2>服务器名称</h2>
-                <h2><span>服务器人数：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;<span>当前游玩地图：</span></h2>
-            </div>
-        </div>
-
-        <!-- 未定 -->
-        <div class="info">
-
-        </div>
+      <!-- 未定 -->
+      <div class="info"></div>
     </div>
-
-</body>
-
-
+  </body>
 </html>

@@ -1,42 +1,49 @@
+<!-- This HTML page programed by Jerry; About this project's Github page: https://github.com/Jerry114514/bf1-web-tool-HTML-Template -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>bf1网页管理工具</title>
+    <!-- 从百度cdn引用JQ -->
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <style type="text/css">
-      /* 信息输入区域与（此处插入模块3）背景 */
-      .serverInfo {
-        /*透明度0.6*/
-        background-color: rgba(255, 255, 255, 0.6);
-        /*向左浮动*/
-        float: left;
-        overflow: hidden;
-        /*外边距*/
-        margin-left: 2%;
-        /*长宽*/
-        width: 400px;
-        height: 85vh;
-        /*高斯模糊*/
-        backdrop-filter: blur(10px);
+      body{
         display: flex;
         flex-direction: column;
         align-items: center;
       }
+      /* 标题 */
+      .bigti {
+        color: aqua;
+      }
+      /* 信息输入区域与（此处插入模块3）背景 */
+      #mainArea {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
 
-      /*服务器主信息模块背景*/
-      .info2 {
+      .info {
+        display: flex;
+
         /*透明度0.6*/
         background-color: rgba(255, 255, 255, 0.6);
-        /*向左浮动*/
-        float: left;
-        overflow: hidden;
+
         /*外边距*/
         margin-left: 2%;
+
         /*长宽*/
-        width: 950px;
+        width: 400px;
         height: 85vh;
+
         /*高斯模糊*/
         backdrop-filter: blur(10px);
+
+        /* 竖轴居中 */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
 
       /* 输入表单 */
@@ -51,22 +58,76 @@
         border-left: none;
         border-right: none;
       }
+      ::placeholder {
+        font-size: 20px;
+      }
+      input:focus {
+        /* 去除outline */
+        outline: none;
+      }
+      .btn {
+        width: 250px;
+        height: 50px;
+        border-radius: 50px;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+      }
+      #gameSearch{
+        background-color: rgb(76, 183, 255);
+      }
 
-      /* 标题 */
-      .bigti {
-        color: aqua;
+      /*-------------------------------------------------------------------*/
+
+      /*战局信息模块背景*/
+      .info2 {
+        display: flex;
+        
+        /*透明度0.6*/
+        background-color: rgba(255, 255, 255, 0.6);
+
+        /*外边距*/
+        margin-left: 2%;
+
+        /*长宽*/
+        width: 950px;
+        height: 85vh;
+
+        /*高斯模糊*/
+        backdrop-filter: blur(10px);
+
+        /* 竖轴居中 */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      #checkPlayer{
+        margin-top: 20px;
+        background-color:rgb(93, 255, 78);
+      }
+      #changeSide{
+        margin-top: 20px;
+        background-color: aquamarine;
+      }
+      #kickPlayer{
+        margin-top: 20px;
+        background-color: rgb(255, 208, 0);
+      }
+      #banPlayer{
+        margin-top: 20px;
+        background-color: red;
       }
     </style>
     <script type="text/javascript"></script>
   </head>
 
   <body background=".\图包\nightTower.jpg">
-    <h1 align="center" class="bigti">战地1网页管理工具</h1>
-    <div>
+    <h1 class="bigti">战地1网页管理工具</h1>
+    <div id="mainArea">
       <!--在此输入gameid，remid和sid-->
       <!-- 信息输入板块 -->
-      <div class="serverInfo">
-        <h3 align="center">请先填写您的服务器的信息</h3>
+      <div class="info" id="serverInfo">
+        <h3>请先填写您的服务器的信息</h3>
         <br />
         <br />
         <!-- 输入remid -->
@@ -81,7 +142,9 @@
             class="idipt"
           />
           <br />
-          <a href=".\remid-help.html">如何获取remid？点击这里查看</a>
+          <span>
+            <a href=".\remid-help.html">如何获取remid？点击这里查看</a>
+          </span>
         </form>
         <br />
         <br />
@@ -102,7 +165,9 @@
             class="idipt"
           />
           <br />
-          <a href=".\sid-help.html">如何获取sid？点击这里查看</a>
+          <span>
+            <a href=".\sid-help.html">如何获取sid？点击这里查看</a>
+          </span>
         </form>
         <br />
         <br />
@@ -124,15 +189,12 @@
           />
         </form>
         <br />
-        <button type="button" id="gameidSearch" alert:"不知道GameID？点此搜索>
-            不知道GameID？点此搜索
-            
-        </button>
+        <button type="button" class="btn" id="gameidSearch">不知道GameID？点此搜索</button>
       </div>
 
       <!-- 服务器主要模块 -->
       <div class="info2">
-        <div align="center">
+        <div>
           <h2>服务器名称</h2>
           <h2>
             <span>服务器人数：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -142,8 +204,14 @@
         </div>
       </div>
 
-      <!-- 未定 -->
-      <div class="info"></div>
+      <!-- 操作模块 -->
+      <div class="info" id="operator">
+        <br>
+        <button type="button" class="btn" id="checkPlayer">查询该玩家战绩</button>
+        <button type="button" class="btn" id="changeSide">更换玩家所属阵营（换边）</button>
+        <button type="button" class="btn" id="kickPlayer">踢出该玩家</button>
+        <button type="button" class="btn" id="banPlayer">在此服务器中封禁该玩家</button>
+      </div>
     </div>
   </body>
 </html>

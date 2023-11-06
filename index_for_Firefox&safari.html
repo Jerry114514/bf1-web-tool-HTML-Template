@@ -319,6 +319,36 @@
           });
         }
         bw = !bw; // 反转bw的值
+
+        let browserFlag = {};
+        let uaFlag = navigator.userAgent.toLowerCase();
+
+        // 检测是否为Firefox
+        let isFirefox = /firefox/.test(uaFlag);
+        if (isFirefox) {
+          browserFlag.firefox = true;
+        }
+
+        // 检测是否为Firefox for Android
+        let isFirefoxAndroid = /android|firefox\s+android/i.test(uaFlag);
+        if (isFirefoxAndroid) {
+          browserFlag.firefoxAndroid = true;
+        }
+
+        // 检测是否为Safari
+        let isSafari = /safari/.test(uaFlag) && !/(chrome|crios)/i.test(uaFlag);
+        if (isSafari) {
+          browserFlag.safari = true;
+        }
+
+        // 检测是否为Safari for iOS
+        let isSafariIOS =
+          /iphone|ipad|ipod/i.test(uaFlag) && /safari/i.test(uaFlag);
+        if (isSafariIOS) {
+          browserFlag.safariIOS = true;
+        }
+
+        console.log(browserFlag); // 输出检测结果
       });
     </script>
   </body>
